@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman Algoritma dan Pemrograman 2</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #f4f4f9; 
+            color: #333; 
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 { 
+            color: #2c3e50; 
+            text-align: center; 
+            border-bottom: 2px solid #34495e; 
+            padding-bottom: 10px;
+        }
+        h2 { 
+            color: #2980b9; 
+            margin-top: 30px;
+        }
+        .pertemuan { 
+            margin-bottom: 25px; 
+            padding: 15px; 
+            border-left: 5px solid #3498db; 
+            background: #f9fbfc; 
+        }
+        ul { 
+            margin-top: 10px; 
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .highlight { 
+            font-weight: bold; 
+            color: #d35400; 
+        }
+        .code-block {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: "Courier New", Courier, monospace;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+        .code-comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+        .code-keyword {
+            color: #c678dd;
+        }
+        .code-function {
+            color: #61afef;
+        }
+        .code-string {
+            color: #98c379;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Rangkuman Materi Algoritma & Pemrograman 2</h1>
+
+        <div class="pertemuan">
+            <h2>Pertemuan 1: Analisis Masalah & IPO Lanjut</h2>
+            <p>Menulis kode secara langsung tanpa perencanaan adalah jebakan yang dapat menghasilkan <i>Spaghetti Code</i> [4]. Solusinya adalah memecah masalah besar menjadi sub-masalah kecil (Dekomposisi) [5]. Setiap pemecahan harus dianalisis menggunakan kerangka <b>IPO (Input-Process-Output)</b> [6].</p>
+            <ul>
+                <li><b>Input:</b> Data mentah yang masuk, diterjemahkan menjadi parameter fungsi [6, 7].</li>
+                <li><b>Process:</b> Logika pengolahan data, diterjemahkan menjadi badan (<i>body</i>) algoritma fungsi [6, 7].</li>
+                <li><b>Output:</b> Hasil akhir, diterjemahkan menjadi nilai kembali (<i>Return Value</i>) [6, 7].</li>
+            </ul>
+        </div>
+
+        <div class="pertemuan">
+            <h2>Pertemuan 2: Pemrograman Modular</h2>
+            <p>Pemrograman modular bertujuan memecah satu program raksasa (monolitik) menjadi fungsi-fungsi kecil yang spesifik, independen, dan terukur untuk mengisolasi kompleksitas [8, 9]. Arsitekturnya memisahkan lapisan definisi fungsi (cetak biru) dan Program Utama yang khusus mengatur alur eksekusi [10, 11].</p>
+            <p>Terdapat empat prinsip emas dalam pemrograman modular [12]:</p>
+            <ul>
+                <li><span class="highlight">Single Responsibility:</span> Satu fungsi hanya mengerjakan tepat satu tugas logis [12].</li>
+                <li><span class="highlight">Reusability:</span> Fungsi dapat digunakan ulang di bagian lain atau proyek berbeda [12].</li>
+                <li><span class="highlight">Readability:</span> Struktur kode lebih rapi dan sangat mudah dibaca manusia [12].</li>
+                <li><span class="highlight">Maintainability:</span> Memudahkan pelacakan <i>error</i> (<i>debugging</i>) dan penambahan fitur [12].</li>
+            </ul>
+        </div>
+
+        <div class="pertemuan">
+            <h2>Pertemuan 3: Rekursi vs Iterasi</h2>
+            <p>Rekursi adalah teknik di mana fungsi memanggil dirinya sendiri secara terus-menerus untuk memecahkan versi masalah yang semakin kecil [13]. Walaupun kodenya lebih elegan, rekursi sangat boros memori karena menumpuk setiap pemanggilan di dalam <i>Call Stack</i> sistem [14, 15]. Sedangkan iterasi menggunakan perulangan <i>loop</i> yang lebih ramah memori karena hanya memperbarui variabel lokal [15, 16].</p>
+            
+            <p><b>Contoh Kode Python: Penghitungan Faktorial</b></p>
+            <div class="code-block">
+<pre><span class="code-comment"># 1. Implementasi Rekursif (Memanggil diri sendiri)</span>
+<span class="code-keyword">def</span> <span class="code-function">faktorial_rekursif</span>(n):
+    <span class="code-keyword">if</span> n == 0: <span class="code-comment"># Base Case</span>
+        <span class="code-keyword">return</span> 1
+    <span class="code-keyword">else</span>: <span class="code-comment"># Recursive Case</span>
+        <span class="code-keyword">return</span> n * <span class="code-function">faktorial_rekursif</span>(n - 1)
+
+<span class="code-comment"># 2. Implementasi Iteratif (Menggunakan Loop)</span>
+<span class="code-keyword">def</span> <span class="code-function">faktorial_iteratif</span>(n):
+    hasil = 1
+    <span class="code-keyword">for</span> i <span class="code-keyword">in</span> range(1, n + 1):
+        hasil *= i
+    <span class="code-keyword">return</span> hasil</pre>
+            </div>
+        </div>
+
+        <div class="pertemuan">
+            <h2>Pertemuan 4: Kompleksitas Algoritma (Notasi Big-O)</h2>
+            <p>Efisiensi program diukur berdasarkan pertumbuhan jumlah langkah eksekusi relatif terhadap ukuran input data (n), bukan waktu detik aktual [17, 18].</p>
+            <ul>
+                <li><b>O(1) - Waktu Konstan:</b> Paling efisien, jumlah eksekusi mutlak tidak berubah [19].</li>
+                <li><b>O(n) - Waktu Linear:</b> Waktu eksekusi berjalan beriringan dengan ukuran data (terjadi di <i>Single Loop</i>) [20].</li>
+                <li><b>O(n²) - Waktu Kuadratik:</b> Membahayakan memori pada data besar karena setiap elemen diproses berulang terhadap elemen lainnya (terjadi di <i>Nested Loop</i>) [21, 22].</li>
+            </ul>
+
+            <p><b>Contoh Kode Python: O(n) vs O(n²)</b></p>
+            <div class="code-block">
+<pre><span class="code-comment"># O(n) - Loop Tunggal (Waktu Linear)</span>
+n = <span class="code-function">int</span>(<span class="code-function">input</span>(<span class="code-string">"Masukkan nilai n: "</span>))
+count_n = 0
+<span class="code-keyword">for</span> i <span class="code-keyword">in</span> range(n):
+    count_n += 1
+<span class="code-function">print</span>(<span class="code-string">"Jumlah iterasi O(n):"</span>, count_n)
+
+<span class="code-comment"># O(n²) - Loop Bersarang (Waktu Kuadratik)</span>
+count_n_kuadrat = 0
+<span class="code-keyword">for</span> i <span class="code-keyword">in</span> range(n):
+    <span class="code-keyword">for</span> j <span class="code-keyword">in</span> range(n):
+        count_n_kuadrat += 1
+<span class="code-function">print</span>(<span class="code-string">"Jumlah iterasi O(n²):"</span>, count_n_kuadrat)</pre>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

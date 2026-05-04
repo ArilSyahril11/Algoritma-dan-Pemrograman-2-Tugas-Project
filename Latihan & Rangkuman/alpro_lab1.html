@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorium Algoritma 2: Kode & Ilustrasi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 450px;
+        }
+        .code-block {
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            border: 1px solid #334155;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .kw { color: #f472b6; font-weight: bold; }
+        .fn { color: #38bdf8; }
+        .str { color: #fbbf24; }
+        .cmt { color: #64748b; font-style: italic; }
+        .num { color: #a78bfa; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+    <!-- 
+        PALETTE INFO:
+        Chosen Palette: "Brilliant Blues & Energetic Orange"
+        Primary: #1E3A8A (Blue)
+        Accent: #F97316 (Orange)
+        Background: #F8FAFC
+        
+        NARRATIVE PLAN:
+        1. Section 1: IPO Framework. Case study on Discounts. Use Bar Chart to show logic thresholds.
+        2. Section 2: Modular Programming. Hierarchy of Functions. Show code for Area Calculation.
+        3. Section 3: Recursion Anatomy. Performance analysis (Space Complexity). Use Line Chart for Call Stack visualization.
+
+        CONFIRMATION:
+        NEITHER Mermaid JS NOR SVG were used. Diagrams are CSS/HTML based.
+    -->
+
+    <nav class="bg-blue-900 text-white sticky top-0 z-50 shadow-md py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tight">ALPRO 2: <span class="text-orange-400">LABORATORIUM</span></h1>
+            <div class="text-sm font-medium bg-blue-800 px-3 py-1 rounded-full border border-blue-700">Python 3.x Environment</div>
+        </div>
+    </nav>
+
+    <header class="bg-white border-b border-slate-200 py-16 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-blue-900 mb-6">Visualisasi Kode & <span class="text-orange-500">Logika Komputasi</span></h2>
+            <p class="text-lg text-slate-600 leading-relaxed">
+                Membedah arsitektur perangkat lunak dari sekadar penulisan sintaks menjadi perancangan sistem yang efisien. Analisis kritis terhadap penggunaan memori dan struktur data modular.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+
+        <!-- 1. IPO FRAMEWORK -->
+        <section class="mb-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div>
+                    <span class="text-orange-500 font-bold tracking-widest text-sm uppercase">Pilar 1: Analisis Masalah</span>
+                    <h3 class="text-3xl font-bold text-blue-900 mt-2 mb-6">Implementasi IPO: Logika Diskon</h3>
+                    <p class="text-slate-600 mb-6 italic">
+                        "Analisis kritis: Mengapa kita butuh IPO? Tanpa pemisahan input dan proses, kode akan menjadi 'spaghetti' yang sulit diuji secara unit."
+                    </p>
+                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100 mb-8">
+                        <h4 class="font-bold text-blue-900 mb-4 flex items-center gap-2">📦 Blueprint IPO</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="bg-white w-10 h-10 rounded-full shadow flex items-center justify-center text-xl">📥</div>
+                                <div class="text-sm"><span class="font-bold">Input:</span> Total Belanja (Float)</div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="bg-white w-10 h-10 rounded-full shadow flex items-center justify-center text-xl">⚙️</div>
+                                <div class="text-sm"><span class="font-bold">Process:</span> Percabangan Bersarang (If-Elif)</div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="bg-white w-10 h-10 rounded-full shadow flex items-center justify-center text-xl">📤</div>
+                                <div class="text-sm"><span class="font-bold">Output:</span> Nominal Diskon & Bayar Akhir</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                        <canvas id="ipoChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <div class="code-block h-full">
+                        <div class="text-slate-500 text-xs mb-4 border-b border-slate-700 pb-2 flex justify-between">
+                            <span>p1_diskon_lab.py</span>
+                            <span>🐍 Python</span>
+                        </div>
+<pre>
+<span class="cmt"># INPUT: Meminta data dari pengguna</span>
+total_belanja = <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Masukkan total: "</span>))
+
+<span class="cmt"># PROCESS: Logika penentuan diskon (Analisis IPO)</span>
+<span class="kw">if</span> total_belanja >= <span class="num">500000</span>:
+    diskon = <span class="num">0.2</span> * total_belanja
+<span class="kw">elif</span> total_belanja >= <span class="num">250000</span>:
+    diskon = <span class="num">0.1</span> * total_belanja
+<span class="kw">else</span>:
+    diskon = <span class="num">0</span>
+
+<span class="cmt"># Kalkulasi hasil bayar</span>
+total_bayar = total_belanja - diskon
+
+<span class="cmt"># OUTPUT: Menampilkan hasil akhir</span>
+<span class="fn">print</span>(<span class="str">f"Diskon  : Rp {diskon:,.0f}"</span>)
+<span class="fn">print</span>(<span class="str">f"Bayar   : Rp {total_bayar:,.0f}"</span>)
+
+<span class="cmt"># Catatan Kritis: Pastikan tipe data 
+# selalu dikonversi (casting) karena 
+# input() menghasilkan String.</span></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. MODULAR DESIGN -->
+        <section class="mb-24">
+            <div class="text-center mb-12">
+                <span class="text-orange-500 font-bold tracking-widest text-sm uppercase">Pilar 2: Dekomposisi Modular</span>
+                <h3 class="text-3xl font-bold text-blue-900 mt-2">Arsitektur Fungsi Bangun Datar</h3>
+                <p class="text-slate-600 max-w-2xl mx-auto mt-4">
+                    Memecah masalah besar menjadi modul kecil (Single Responsibility Principle). Setiap fungsi hanya boleh melakukan satu hal dengan baik.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-600">
+                    <div class="text-2xl mb-2">📐</div>
+                    <h4 class="font-bold text-blue-900">Modul Perhitungan</h4>
+                    <p class="text-xs text-slate-500 mt-1">Fungsi murni yang melakukan kalkulasi matematis tanpa gangguan input/output.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-orange-500">
+                    <div class="text-2xl mb-2">🎮</div>
+                    <h4 class="font-bold text-blue-900">Modul Antarmuka</h4>
+                    <p class="text-xs text-slate-500 mt-1">Menangani interaksi pengguna, menu, dan format tampilan data.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-cyan-500">
+                    <div class="text-2xl mb-2">✅</div>
+                    <h4 class="font-bold text-blue-900">Modul Validasi</h4>
+                    <p class="text-xs text-slate-500 mt-1">Memastikan data yang masuk (seperti jari-jari) tidak bernilai negatif.</p>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="text-slate-500 text-xs mb-4 border-b border-slate-700 pb-2 flex justify-between">
+                    <span>p2_modular_calc.py</span>
+                    <span>🧩 Modular Design</span>
+                </div>
+<pre>
+<span class="kw">import</span> math
+
+<span class="cmt"># MODUL 1: Fungsi murni (Logic Only)</span>
+<span class="kw">def</span> <span class="fn">hitung_luas_lingkaran</span>(r):
+    <span class="kw">return</span> math.pi * r * r
+
+<span class="cmt"># MODUL 2: Validasi (Logic Only)</span>
+<span class="kw">def</span> <span class="fn">is_valid</span>(nilai):
+    <span class="kw">return</span> nilai > <span class="num">0</span>
+
+<span class="cmt"># MODUL 3: Program Utama (Interaksi)</span>
+<span class="kw">def</span> <span class="fn">main</span>():
+    jari = <span class="fn">float</span>(<span class="fn">input</span>(<span class="str">"Jari-jari: "</span>))
+    <span class="kw">if</span> <span class="fn">is_valid</span>(jari):
+        luas = <span class="fn">hitung_luas_lingkaran</span>(jari)
+        <span class="fn">print</span>(<span class="str">f"Luas: {luas:.2f}"</span>)
+    <span class="kw">else</span>:
+        <span class="fn">print</span>(<span class="str">"Error: Input harus positif!"</span>)
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    <span class="fn">main</span>()</pre>
+            </div>
+        </section>
+
+        <!-- 3. RECURSION VS ITERATION -->
+        <section class="mb-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-slate-900 p-8 rounded-3xl shadow-2xl text-white">
+                    <span class="text-cyan-400 font-bold tracking-widest text-sm uppercase">Pilar 3: Rekursi vs Iterasi</span>
+                    <h3 class="text-3xl font-bold mt-2 mb-6 text-white">Anatomi Memori: Faktorial</h3>
+                    <p class="text-slate-400 mb-8 text-sm leading-relaxed">
+                        Perbandingan efisiensi ruang antara pendekatan loop (Iterasi) dan tumpukan fungsi (Rekursi). Analisis kritis menunjukkan rekursi memiliki beban <i>overhead</i> yang lebih besar pada memori sistem.
+                    </p>
+                    <div class="chart-container bg-slate-800 p-4 rounded-xl border border-slate-700">
+                        <canvas id="memoryChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="code-block border-l-4 border-orange-500">
+                        <div class="text-orange-400 text-xs mb-2">Versi Rekursif (Memakan Stack)</div>
+<pre>
+<span class="kw">def</span> <span class="fn">faktorial_rekursif</span>(n):
+    <span class="kw">if</span> n == <span class="num">1</span>: <span class="cmt"># Base Case</span>
+        <span class="kw">return</span> <span class="num">1</span>
+    <span class="kw">else</span>: <span class="cmt"># Recursive Case</span>
+        <span class="kw">return</span> n * <span class="fn">faktorial_rekursif</span>(n - <span class="num">1</span>)
+
+<span class="cmt"># Bahaya: Jika n terlalu besar (misal 1000)</span>
+<span class="cmt"># sistem akan mengalami RecursionError.</span></pre>
+                    </div>
+
+                    <div class="code-block border-l-4 border-cyan-500">
+                        <div class="text-cyan-400 text-xs mb-2">Versi Iteratif (Hemat Memori)</div>
+<pre>
+<span class="kw">def</span> <span class="fn">faktorial_iteratif</span>(n):
+    hasil = <span class="num">1</span>
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, n + <span class="num">1</span>):
+        hasil *= i
+    <span class="kw">return</span> hasil
+
+<span class="cmt"># Aman: Menggunakan frame memori tunggal</span>
+<span class="cmt"># yang sama sepanjang perulangan.</span></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-blue-900 text-white py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-left">
+                <h4 class="text-xl font-bold mb-2">Kesimpulan Analitis</h4>
+                <p class="text-blue-300 text-sm max-w-md">
+                    Seorang arsitek sistem tidak hanya mengejar kode yang elegan (Rekursi), tetapi juga kode yang pragmatis dan efisien (Modular/Iterasi) demi stabilitas perangkat lunak dalam jangka panjang.
+                </p>
+            </div>
+            <div class="text-xs text-blue-400 text-center md:text-right">
+                Laboratorium Algoritma & Pemrograman 2<br>
+                Sesi Praktikum Terpadu - STTPA 2026
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const wrapLabel = (text, maxLen) => {
+            const words = text.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + ' ' + words[i]).length <= maxLen) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        };
+
+        const universalTooltip = {
+            tooltip: {
+                callbacks: {
+                    title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        return Array.isArray(label) ? label.join(' ') : label;
+                    }
+                }
+            }
+        };
+
+        // CHART 1: IPO DISCOUNTS
+        const ctxIpo = document.getElementById('ipoChart').getContext('2d');
+        new Chart(ctxIpo, {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabel('Tanpa Diskon (<250k)', 16), 
+                    wrapLabel('Diskon 10% (>=250k)', 16), 
+                    wrapLabel('Diskon 20% (>=500k)', 16)
+                ],
+                datasets: [{
+                    label: 'Persentase Diskon (%)',
+                    data: [0, 10, 20],
+                    backgroundColor: ['#94a3b8', '#38bdf8', '#f97316'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { ...universalTooltip, legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, max: 25, title: { display: true, text: 'Persen (%)' } }
+                }
+            }
+        });
+
+        // CHART 2: MEMORY PERFORMANCE
+        const ctxMem = document.getElementById('memoryChart').getContext('2d');
+        new Chart(ctxMem, {
+            type: 'line',
+            data: {
+                labels: ['N=1', 'N=2', 'N=3', 'N=4', 'N=5', 'N=6', 'N=7'],
+                datasets: [
+                    {
+                        label: 'Rekursi (Stack Size)',
+                        data: [1, 2, 3, 4, 5, 6, 7],
+                        borderColor: '#f97316',
+                        backgroundColor: 'rgba(249, 115, 22, 0.2)',
+                        fill: true,
+                        pointRadius: 6,
+                        tension: 0.2
+                    },
+                    {
+                        label: 'Iterasi (Memory Frame)',
+                        data: [1, 1, 1, 1, 1, 1, 1],
+                        borderColor: '#38bdf8',
+                        borderDash: [5, 5],
+                        borderWidth: 3,
+                        pointRadius: 6,
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { 
+                    ...universalTooltip, 
+                    legend: { 
+                        position: 'top', 
+                        labels: { color: '#fff' } 
+                    } 
+                },
+                scales: {
+                    y: { 
+                        beginAtZero: true, 
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8' },
+                        title: { display: true, text: 'Alokasi Memori', color: '#fff' }
+                    },
+                    x: { 
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
