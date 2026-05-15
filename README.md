@@ -1,9 +1,10 @@
 # 📘 Algoritma dan Pemrograman 2 — STTPA
-## Laporan Tugas Praktikum Lengkap (Pertemuan 1–6)
+## Kumpulan Tugas Praktikum Lengkap (Pertemuan 1–7)
 
 **Program Studi:** Teknik Informatika  
 **Mata Kuliah:** Algoritma dan Pemrograman 2  
-**Dosen:** Yudi Herdiana, S.T., M.T.
+**Dosen:** Yudi Herdiana, S.T., M.T.  
+**Semester:** Genap 2026
 
 ---
 
@@ -13,28 +14,31 @@
 Alpro2_Praktikum/
 │
 ├── Pertemuan1/
-│   ├── p1_diskon.py              ← Latihan 1: Kalkulator Diskon
-│   ├── p1_nilai_mahasiswa.py     ← Latihan 2: Nilai Akhir + Validasi
-│   └── p1_konversi_suhu.py       ← Challenge: Konversi Suhu (°C → °F & K)
+│   ├── p1_diskon.py                    ← Latihan 1: Kalkulator Diskon
+│   ├── p1_nilai_mahasiswa.py           ← Latihan 2: Nilai Akhir + Validasi
+│   └── p1_konversi_suhu.py             ← Challenge: Konversi Suhu
 │
 ├── Pertemuan2/
-│   ├── p2_nilai_modular.py       ← Latihan 1: Nilai Mahasiswa Modular
-│   └── p2_bangun_datar.py        ← Latihan 2+Challenge: Bangun Datar Modular
+│   ├── p2_nilai_modular.py             ← Latihan 1: Nilai Mahasiswa (5 Fungsi Modular)
+│   └── p2_bangun_datar.py              ← Latihan 2+Challenge: Bangun Datar Modular
 │
 ├── Pertemuan3/
-│   └── p3_rekursi_iterasi.py     ← Faktorial, Jumlah, Fibonacci, Pangkat
+│   └── p3_rekursi_iterasi.py           ← Faktorial, Jumlah, Fibonacci, Pangkat + Trace
 │
 ├── Pertemuan4/
-│   └── p4_big_o_analysis.py      ← O(1), O(n), O(n²) + Tabel Iterasi
+│   └── p4_big_o_analysis.py            ← O(1), O(n), O(n²) + Tabel Iterasi + Uji Waktu
 │
 ├── Pertemuan5/
-│   └── p5_searching.py           ← Linear Search + Binary Search + Challenge
+│   └── p5_searching.py                 ← Linear Search + Binary Search + Trace + Challenge
 │
 ├── Pertemuan6/
-│   └── p6_sorting.py             ← Bubble, Selection, Insertion Sort
+│   └── p6_sorting.py                   ← Bubble + Selection + Insertion Sort + Challenge
 │
-├── LAPORAN_PRAKTIKUM.md          ← Jawaban Refleksi Pertemuan 1–3
-└── README.md                     ← File ini
+├── Pertemuan7/
+│   └── p7_sistem_nilai_terintegrasi.py ← Sistem Integrasi Lengkap (Simulasi UTS)
+│
+├── LAPORAN_PRAKTIKUM.md                ← Laporan & Refleksi Lengkap Pertemuan 1–7
+└── README.md                           ← File ini
 ```
 
 ---
@@ -47,20 +51,15 @@ Alpro2_Praktikum/
 
 **Topik:** Kerangka IPO (Input–Process–Output), Pseudocode → Python
 
-| File | Topik | Konsep |
-|------|-------|--------|
+| File | Topik | Konsep Utama |
+|------|-------|--------------|
 | `p1_diskon.py` | Kalkulator diskon belanja | `if-elif-else`, validasi input |
-| `p1_nilai_mahasiswa.py` | Nilai akhir berbobot | Rumus berbobot, validasi range |
-| `p1_konversi_suhu.py` | Konversi °C → °F dan Kelvin | Rumus matematika, tabel output |
+| `p1_nilai_mahasiswa.py` | Nilai akhir berbobot | Rumus berbobot, validasi range 0–100 |
+| `p1_konversi_suhu.py` | Konversi °C → °F & Kelvin | Rumus matematika, tabel output |
 
-**Aturan Diskon:**
-- Belanja ≥ Rp500.000 → Diskon 20%
-- Belanja ≥ Rp250.000 → Diskon 10%
-- Lainnya → Diskon 0%
+**Aturan Diskon:** ≥Rp500rb → 20% | ≥Rp250rb → 10% | lainnya → 0%
 
-**Refleksi:**
-> *Mengapa urutan kondisi `if-elif` penting?*  
-> Python mengevaluasi dari atas ke bawah dan berhenti pada kondisi pertama yang `True`. Kondisi paling spesifik (nilai terbesar) harus ditulis lebih dahulu agar tidak terjadi kesalahan klasifikasi.
+> **Prinsip:** *Think First, Code Later* — analisis IPO sebelum menulis kode.
 
 ---
 
@@ -68,239 +67,219 @@ Alpro2_Praktikum/
 
 **Topik:** Dekomposisi, Single Responsibility, Return Value
 
-| File | Fungsi-fungsi |
-|------|--------------|
-| `p2_nilai_modular.py` | `input_nilai()`, `validasi_nilai()`, `hitung_nilai()`, `tentukan_grade()`, `tampilkan_hasil()` |
-| `p2_bangun_datar.py` | `luas_persegi()`, `luas_persegi_panjang()`, `luas_lingkaran()`, + keliling masing-masing |
+**Fungsi `p2_nilai_modular.py`:** `input_nilai()` → `validasi_nilai()` → `hitung_nilai()` → `tentukan_grade()` → `tampilkan_hasil()`
 
-**4 Prinsip Emas Modular:**
-1. **Single Responsibility** — Satu fungsi, satu tugas
-2. **Reusability** — Fungsi dapat dipanggil berulang kali
-3. **Readability** — Kode mudah dibaca manusia
-4. **Maintainability** — Mudah diubah tanpa merusak bagian lain
-
-**Refleksi:**
-> *Apa keuntungan modular vs monolitik?*  
-> Kode modular lebih terstruktur, mudah di-debug per fungsi, dapat dipakai ulang, dan penambahan fitur baru tidak berisiko merusak bagian yang sudah berjalan.
+**4 Prinsip Emas:** Single Responsibility · Reusability · Readability · Maintainability
 
 ---
 
 ### Pertemuan 3 — Rekursi vs Iterasi
 
-**Topik:** Base Case, Recursive Case, Call Stack, Fibonacci
+**Topik:** Base Case, Recursive Case, Call Stack, Overlapping Subproblems
 
-| Fungsi | Rekursif | Iteratif | Kompleksitas |
-|--------|----------|----------|--------------|
-| Faktorial(n) | ✓ | ✓ | O(n) rekursi linear |
-| Jumlah 1..n | ✓ | ✓ | O(n) |
-| Fibonacci(n) | ✓ | ✓ | O(2ⁿ) rekursi / O(n) iterasi |
-| Pangkat a^n | ✓ | — | O(n) |
+| Fungsi | Rekursif | Iteratif | Kompleksitas Rekursif |
+|--------|:--------:|:--------:|----------------------|
+| `faktorial(n)` | ✓ | ✓ | O(n) — linear |
+| `jumlah(n)` | ✓ | ✓ | O(n) |
+| `fibonacci(n)` | ✓ | ✓ | O(2ⁿ) — bercabang dua |
+| `pangkat(a,n)` | ✓ | — | O(n) |
 
-**Anatomi Rekursi:**
-```
-Fungsi rekursif(n):
-    Jika kondisi_berhenti:   ← Base Case (WAJIB ADA)
-        kembalikan nilai_pasti
-    Else:
-        kembalikan rekursif(n-1)  ← Recursive Case
-```
-
-**Trace faktorial(4):**
-```
-→ faktorial(4) → faktorial(3) → faktorial(2) → faktorial(1) → faktorial(0)=1
-← 1×1=1 ← 2×1=2 ← 3×2=6 ← 4×6=24
-```
-
-**Refleksi:**
-> *Mengapa Fibonacci rekursif lebih lambat?*  
-> Fibonacci rekursif melahirkan **dua** percabangan setiap langkah (rekursi bercabang). Sub-masalah yang sama dihitung berulang kali (overlapping subproblems), menghasilkan kompleksitas O(2ⁿ).
+> **Bahaya:** Tanpa Base Case → Infinite Recursion → Stack Overflow
 
 ---
 
-### Pertemuan 4 — Analisis Kompleksitas Algoritma (Big-O Intuitif)
+### Pertemuan 4 — Analisis Kompleksitas Algoritma (Big-O)
 
-**Topik:** O(1), O(n), O(n²), Aturan Big-O, Menghitung Iterasi
+**Topik:** O(1), O(n), O(n²), Aturan Big-O, Menghitung Iterasi Aktual
 
-| Latihan | Pola Kode | Kompleksitas | Iterasi (n=10) |
-|---------|-----------|--------------|----------------|
-| 1 | Satu loop | O(n) | 10 |
-| 2 | Dua loop berurutan | O(n) | 20 → tetap O(n) |
-| 3 | Loop bersarang | O(n²) | 100 |
-| 4 | Linear Search | O(n) worst | ≤ n langkah |
+**Tabel Iterasi Wajib:**
 
-**Tabel Perbandingan Iterasi:**
-
-| n | O(1) | O(n) ×1 | O(n) ×2 | O(n²) | Rasio n²/n |
-|---|------|---------|---------|-------|------------|
+| n | O(1) | O(n) | O(n) ×2 | O(n²) | Rasio n²/n |
+|:-:|:----:|:----:|:-------:|:-----:|:----------:|
 | 5 | 1 | 5 | 10 | 25 | 5× |
 | 10 | 1 | 10 | 20 | 100 | 10× |
 | 20 | 1 | 20 | 40 | 400 | 20× |
 
-**Aturan Big-O:**
-- Konstanta diabaikan: `2n → O(n)`, `5n² → O(n²)`
-- Loop berurutan: `O(n) + O(n) = O(n)` *(bukan O(2n))*
-- Loop bersarang: `O(n) × O(n) = O(n²)`
-- Ambil suku terbesar: `O(n² + n) → O(n²)`
-
-**Refleksi:**
-> *Mengapa O(n²) jauh lebih lambat saat n besar?*  
-> Saat n=1000, O(n) butuh 1.000 operasi sedangkan O(n²) butuh **1.000.000** operasi — 1000× lebih banyak. Saat n=10.000, perbedaannya menjadi 10.000×. Pertumbuhan kuadratik menjadi tidak praktis dengan cepat.
-
-> *Mengapa konstanta tidak diperhitungkan dalam Big-O?*  
-> Big-O mengukur **pola pertumbuhan**, bukan nilai absolut. Untuk n yang sangat besar, konstanta 2 atau 5 menjadi tidak signifikan dibanding faktor pertumbuhan (n vs n²).
+**Aturan:** Konstanta diabaikan · Loop berurutan tetap O(n) · Loop bersarang = O(n²)
 
 ---
 
 ### Pertemuan 5 — Linear Search dan Binary Search
 
-**Topik:** O(n) vs O(log n), syarat Binary Search, perbandingan langkah
+**Topik:** O(n) vs O(log n), Syarat Binary Search
 
-| Algoritma | Kompleksitas | Syarat Data | Cocok Untuk |
-|-----------|--------------|-------------|-------------|
-| Linear Search | O(n) | Bebas (tidak perlu terurut) | Data kecil, data tidak terurut |
-| Binary Search | O(log n) | **WAJIB terurut** | Data besar yang terurut |
+| Algoritma | Kompleksitas | Syarat Data |
+|-----------|:------------:|-------------|
+| Linear Search | O(n) | Bebas |
+| Binary Search | O(log n) | **WAJIB terurut** |
 
 **Tabel Perbandingan Langkah (Worst Case):**
 
-| n | Linear Search | Binary Search | log₂(n) | Binary lebih cepat |
-|---|---------------|---------------|---------|-------------------|
-| 10 | 10 | 3 | 4 | ~3× |
-| 100 | 100 | 6 | 7 | ~17× |
-| 1.000 | 1.000 | 9 | 10 | ~111× |
-| 10.000 | 10.000 | 13 | 14 | ~769× |
+| n | Linear | Binary | Selisih |
+|:-:|:------:|:------:|:-------:|
+| 100 | 100 | 7 | ~14× |
+| 1.000 | 1.000 | 10 | ~100× |
+| 10.000 | 10.000 | 14 | ~714× |
 
-**Mekanisme Binary Search:**
-```
-low=0, high=n-1
-Selama low <= high:
-    mid = (low+high)//2
-    Jika data[mid] == target → DITEMUKAN
-    Jika data[mid] < target  → low = mid+1   (cari kanan)
-    Jika data[mid] > target  → high = mid-1  (cari kiri)
-```
-
-**Challenge — Binary Search data tidak terurut:**  
-Binary Search pada data acak menghasilkan hasil yang **tidak dapat dipercaya**. Ia membuang setengah ruang pencarian berdasarkan asumsi keterurutan yang tidak terpenuhi, sehingga target yang ada bisa dianggap tidak ada.
-
-**Refleksi:**
-> *Kapan Linear Search lebih tepat dari Binary Search?*  
-> Saat data tidak terurut, saat biaya pengurutan lebih mahal dari pencarian, atau saat data sangat kecil (n < 10) di mana overhead Binary Search tidak sepadan.
+> **Challenge:** Binary Search pada data tidak terurut → hasil **tidak dapat dipercaya**.
 
 ---
 
-### Pertemuan 6 — Sorting Dasar (Bubble, Selection, Insertion)
+### Pertemuan 6 — Sorting Dasar
 
-**Topik:** Tiga algoritma sorting O(n²), perbandingan operasi, best/worst case
-
-**Implementasi Data Demo `[5, 2, 9, 1, 5, 6]`:**
-
-| Algoritma | Hasil | Perbandingan | Swap/Shift |
-|-----------|-------|--------------|------------|
-| Bubble Sort | [1,2,5,5,6,9] | 14 | 6 swap |
-| Selection Sort | [1,2,5,5,6,9] | 15 | 4 swap |
-| Insertion Sort | [1,2,5,5,6,9] | 9 | 6 shift |
+**Topik:** Bubble Sort, Selection Sort, Insertion Sort
 
 **Tabel Perbandingan (Data Acak):**
 
 | n | Bubble (comp) | Selection (comp) | Insertion (comp) |
-|---|---------------|------------------|------------------|
+|:-:|:-------------:|:----------------:|:----------------:|
 | 6 | ~9 | 15 | ~7 |
-| 10 | ~45 | 45 | ~35 |
+| 10 | ~39 | 45 | ~24 |
 | 20 | ~190 | 190 | ~107 |
-
-**Perbandingan Berdasarkan Jenis Data (n=10):**
-
-| Jenis Data | Bubble | Selection | Insertion |
-|------------|--------|-----------|-----------|
-| Data Acak | ~39 | 45 | ~24 |
-| Data Terurut (best) | 9 | 45 | **9** |
-| Data Terbalik (worst) | 45 | 45 | 45 |
-| Hampir Terurut | ~45 | 45 | **~24** |
 
 **Kompleksitas:**
 
-| Algoritma | Best Case | Worst Case | Space | Keunggulan |
-|-----------|-----------|------------|-------|------------|
-| Bubble Sort | O(n) | O(n²) | O(1) | Mudah dipahami |
-| Selection Sort | O(n²) | O(n²) | O(1) | Jumlah swap minimum |
-| Insertion Sort | **O(n)** | O(n²) | O(1) | Terbaik untuk data hampir terurut |
+| Algoritma | Best | Worst | Keunggulan |
+|-----------|:----:|:-----:|------------|
+| Bubble Sort | O(n) | O(n²) | Mudah dipahami |
+| Selection Sort | O(n²) | O(n²) | Jumlah swap minimum |
+| Insertion Sort | **O(n)** | O(n²) | Terbaik untuk data hampir terurut |
 
-**Challenge — Insertion Sort:**
-- Data terurut: 19 perbandingan, **0 shift** → O(n)
-- Hampir terurut: ~44 perbandingan, ~25 shift → mendekati O(n)
-- Data acak: ~83 perbandingan, ~66 shift → O(n²)
-- Data terbalik: 190 perbandingan, 190 shift → worst case O(n²)
+> **Challenge:** Insertion Sort data terurut → **0 shift** (O(n)) vs data terbalik → 190 shift (O(n²))
 
-**Refleksi:**
-> *Mana yang paling stabil pada data hampir terurut?*  
-> **Insertion Sort** — karena hanya menggeser elemen yang memang salah posisi. Elemen yang sudah berada di tempat yang tepat tidak tersentuh sama sekali.
+---
 
-> *Panduan memilih algoritma sorting:*
-> - **Bubble Sort** → edukasi / data sangat kecil
-> - **Selection Sort** → minimize operasi write/swap (storage khusus)
-> - **Insertion Sort** → data hampir terurut, data streaming/real-time
-> - **Python `sorted()`** → production code (TimSort: O(n log n))
+### Pertemuan 7 — Integrasi Algoritma (Simulasi UTS) ⭐
+
+**Topik:** Menggabungkan seluruh konsep pertemuan 1–6 dalam satu sistem nyata
+
+**Pipeline Sistem Pengolahan Nilai Mahasiswa:**
+```
+input_data()  →  hitung_nilai()  →  bubble_sort()      →  tampilkan_data()
+   O(n)            O(n)               O(n²)                   O(n)
+                                  insertion_sort()
+                                      O(n²)
+                                  linear_search()  (by nama)
+                                      O(n)
+                                  binary_search()  (by nilai, post-sort)
+                                      O(log n)
+```
+
+**Fungsi-fungsi Wajib (Modul Praktikum):**
+
+| Fungsi | Kompleksitas | Deskripsi |
+|--------|:------------:|-----------|
+| `input_data_mahasiswa()` | O(n) | Input nama + 3 komponen nilai per mahasiswa |
+| `hitung_nilai()` | O(n) | Kalkulasi nilai akhir berbobot + tentukan grade |
+| `bubble_sort_desc()` | O(n²) | Urutkan descending, hitung perbandingan & swap |
+| `insertion_sort_desc()` | O(n²) | Alternatif sorting — lebih efisien untuk n kecil |
+| `linear_search()` | O(n) | Cari mahasiswa by nama (case-insensitive) |
+| `binary_search_nilai()` | O(log n) | Cari nilai setelah data terurut |
+| `tampilkan_data()` | O(n) | Output tabel terstruktur dengan header |
+| `tampilkan_statistik()` | O(n) | Statistik min, max, rata-rata, distribusi grade |
+
+**Kompleksitas Total:**
+```
+O(n) + O(n) + O(n²) + O(n) + O(log n) + O(n) = O(n²)
+Komponen dominan: Sorting → menentukan performa keseluruhan sistem
+```
+
+**Challenge — Bubble Sort vs Insertion Sort (n=8, data acak):**
+
+| Metrik | Bubble Sort | Insertion Sort | Pemenang |
+|--------|:-----------:|:--------------:|:--------:|
+| Perbandingan | 28 | **19** | Insertion Sort |
+| Swap / Shift | 14 | 14 | Seri |
+
+> **Kesimpulan:** Untuk n kecil, Insertion Sort lebih sedikit perbandingan karena berhenti lebih awal per elemen. Asimtotik keduanya O(n²).
+
+**Hasil Eksekusi Demo (8 mahasiswa, terurut descending):**
+
+| # | Nama | Nilai Akhir | Grade |
+|:-:|------|:-----------:|:-----:|
+| 1 | Gita Rahayu | 94.90 | A |
+| 2 | Citra Dewi | 91.40 | A |
+| 3 | Eva Maharani | 82.00 | B |
+| 4 | Andi Pratama | 81.70 | B |
+| 5 | Hendra Wijaya | 71.40 | B |
+| 6 | Budi Santoso | 69.30 | C |
+| 7 | Deni Saputra | 57.70 | D |
+| 8 | Fajar Nugroho | 45.50 | E |
 
 ---
 
 ## 🔗 Peta Konsep Keseluruhan
 
 ```
-Pertemuan 1: Analisis Masalah & IPO
-    ↓
-Pertemuan 2: Modular Programming (Dekomposisi Fungsi)
-    ↓
-Pertemuan 3: Rekursi vs Iterasi (Call Stack, Base Case)
-    ↓
-Pertemuan 4: Analisis Kompleksitas Big-O (O(1), O(n), O(n²))
-    ↓
-Pertemuan 5: Algoritma Pencarian (O(n) vs O(log n))
-    ↓
-Pertemuan 6: Algoritma Pengurutan (Bubble, Selection, Insertion)
+P1: Analisis Masalah & IPO
+ └─→ P2: Modular Programming (Dekomposisi Fungsi)
+      └─→ P3: Rekursi vs Iterasi (Call Stack, Base Case)
+           └─→ P4: Analisis Kompleksitas Big-O
+                └─→ P5: Algoritma Pencarian (O(n) vs O(log n))
+                     └─→ P6: Algoritma Pengurutan (Bubble/Selection/Insertion)
+                          └─→ P7: INTEGRASI SISTEM — Simulasi UTS ⭐
+                               (IPO + Modular + Sort + Search + Analisis)
 ```
+
+---
 
 ## 📊 Hierarki Kompleksitas Algoritma
 
 ```
 O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2ⁿ)
-Terbaik                                          Terburuk
+Terbaik ──────────────────────────────────────── Terburuk
 ```
 
-| Notasi | Nama | Contoh |
-|--------|------|--------|
-| O(1) | Konstan | Akses array by index |
+| Notasi | Nama | Contoh dalam Praktikum |
+|--------|------|------------------------|
+| O(1) | Konstan | Akses array by index, `validasi_nilai()` |
 | O(log n) | Logaritmik | Binary Search |
-| O(n) | Linear | Linear Search, loop tunggal |
-| O(n²) | Kuadratik | Bubble/Selection/Insertion Sort |
+| O(n) | Linear | Linear Search, `input_data()`, `hitung_nilai()` |
+| O(n²) | Kuadratik | Bubble / Selection / Insertion Sort |
 | O(2ⁿ) | Eksponensial | Fibonacci rekursif naif |
+
+---
+
+## 🗺️ Matriks Pemilihan Algoritma
+
+| Kebutuhan | Kondisi Data | Pilihan Terbaik | Kompleksitas |
+|-----------|:------------:|-----------------|:------------:|
+| Pencarian | Tidak terurut | Linear Search | O(n) |
+| Pencarian | Terurut | Binary Search | O(log n) |
+| Pengurutan | Hampir terurut / n kecil | Insertion Sort | O(n) ~ O(n²) |
+| Pengurutan | Minimize swap | Selection Sort | O(n²) |
+| Pengurutan | Production / n besar | `sorted()` / TimSort | O(n log n) |
+| Komputasi berulang | Sub-masalah identik | Rekursi | Bergantung kasus |
+
+---
+
+## 📋 Strategi Eksekusi UTS (Blueprint Pertemuan 7)
+
+1. **Baca Cermat** — Pahami spesifikasi dan batasan masalah secara menyeluruh
+2. **Identifikasi Tipe** — Apakah masalah rekursi, searching, atau sorting?
+3. **Pilih Algoritma** — Tentukan algoritma paling sesuai kondisi data
+4. **Analisis Kompleksitas** — Hitung efisiensi Big-O dari pilihan algoritma
+5. **Implementasi Modular** — Tulis pseudocode/kode secara terstruktur dan terpecah
 
 ---
 
 ## ▶️ Cara Menjalankan
 
 ```bash
-# Pertemuan 1
 python3 Pertemuan1/p1_diskon.py
 python3 Pertemuan1/p1_nilai_mahasiswa.py
 python3 Pertemuan1/p1_konversi_suhu.py
-
-# Pertemuan 2
 python3 Pertemuan2/p2_nilai_modular.py
 python3 Pertemuan2/p2_bangun_datar.py
-
-# Pertemuan 3
 python3 Pertemuan3/p3_rekursi_iterasi.py
-
-# Pertemuan 4
 python3 Pertemuan4/p4_big_o_analysis.py
-
-# Pertemuan 5
 python3 Pertemuan5/p5_searching.py
-
-# Pertemuan 6
 python3 Pertemuan6/p6_sorting.py
+python3 Pertemuan7/p7_sistem_nilai_terintegrasi.py   # ← Integrasi lengkap
 ```
 
 ---
 
-*"Good code is the documentation of good thought." — Algoritma & Pemrograman 2, STTPA*
+*"Good code is the documentation of good thought."*  
+*"Pemrograman modular bukan sekadar memecah kode — ini tentang mengisolasi kompleksitas."*  
+— Algoritma & Pemrograman 2, STTPA

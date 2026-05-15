@@ -1,306 +1,141 @@
-# 📘 Algoritma dan Pemrograman 2 — STTPA
-## Laporan Tugas Praktikum Lengkap (Pertemuan 1–6)
 
-**Program Studi:** Teknik Informatika  
-**Mata Kuliah:** Algoritma dan Pemrograman 2  
-**Dosen:** Yudi Herdiana, S.T., M.T.
 
 ---
 
-## 📁 Struktur File
+## PERTEMUAN 4 — Analisis Kompleksitas Algoritma (Big-O Intuitif)
 
-```
-Alpro2_Praktikum/
-│
-├── Pertemuan1/
-│   ├── p1_diskon.py              ← Latihan 1: Kalkulator Diskon
-│   ├── p1_nilai_mahasiswa.py     ← Latihan 2: Nilai Akhir + Validasi
-│   └── p1_konversi_suhu.py       ← Challenge: Konversi Suhu (°C → °F & K)
-│
-├── Pertemuan2/
-│   ├── p2_nilai_modular.py       ← Latihan 1: Nilai Mahasiswa Modular
-│   └── p2_bangun_datar.py        ← Latihan 2+Challenge: Bangun Datar Modular
-│
-├── Pertemuan3/
-│   └── p3_rekursi_iterasi.py     ← Faktorial, Jumlah, Fibonacci, Pangkat
-│
-├── Pertemuan4/
-│   └── p4_big_o_analysis.py      ← O(1), O(n), O(n²) + Tabel Iterasi
-│
-├── Pertemuan5/
-│   └── p5_searching.py           ← Linear Search + Binary Search + Challenge
-│
-├── Pertemuan6/
-│   └── p6_sorting.py             ← Bubble, Selection, Insertion Sort
-│
-├── LAPORAN_PRAKTIKUM.md          ← Jawaban Refleksi Pertemuan 1–3
-└── README.md                     ← File ini
-```
+### Tabel Perbandingan Iterasi (Wajib)
+
+| n  | O(1) | O(n) ×1 | O(n) ×2 | O(n²)  |
+|----|:----:|:-------:|:-------:|:------:|
+| 5  | 1    | 5       | 10      | 25     |
+| 10 | 1    | 10      | 20      | 100    |
+| 20 | 1    | 20      | 40      | 400    |
+
+### Kesimpulan (5–7 Kalimat)
+
+Kompleksitas O(n) berarti jumlah operasi bertumbuh secara proporsional dengan ukuran input n; ketika n digandakan, waktu eksekusi ikut berlipat dua. Kompleksitas O(n²) tumbuh secara kuadratik: ketika n digandakan dari 10 ke 20, iterasi melonjak dari 100 menjadi 400 (empat kali lipat). Dua loop berurutan menghasilkan 2n iterasi namun tetap diklasifikasikan O(n) karena konstanta diabaikan dalam notasi asimtotik. Loop bersarang menghasilkan n×n = n² iterasi karena setiap elemen luar diproses bersama seluruh elemen dalam. Perbedaan antara O(n) dan O(n²) tampak kecil untuk n=5 (5 vs 25) namun menjadi sangat besar pada n=1.000 (1.000 vs 1.000.000 operasi). Linear Search O(n) jauh lebih efisien dari Nested Loop O(n²) terutama ketika pencarian dapat berhenti lebih awal (best case O(1)). Big-O mengukur pola pertumbuhan terburuk sehingga membantu memilih algoritma yang tepat sebelum membangun sistem berskala besar.
+
+### Refleksi Pertemuan 4
+
+**1. Mengapa O(n²) jauh lebih lambat ketika n besar?**
+
+Saat n=1.000, O(n) memerlukan 1.000 operasi sedangkan O(n²) memerlukan 1.000.000 operasi — 1.000× lebih banyak. Saat n=10.000, selisihnya menjadi 10.000×. Pertumbuhan kuadratik menyebabkan algoritma menjadi tidak praktis dengan sangat cepat seiring bertambahnya data.
+
+**2. Mengapa konstanta tidak diperhitungkan dalam Big-O?**
+
+Big-O mengukur pola pertumbuhan asimtotik, bukan nilai absolut. Untuk n yang sangat besar, konstanta (2, 5, atau 100) menjadi tidak signifikan dibanding faktor pertumbuhan dominan. Misalnya 100n masih jauh lebih kecil dari n² saat n > 100.
+
+**3. Mana yang lebih penting: kebenaran algoritma atau efisiensi?**
+
+Kebenaran harus menjadi prioritas pertama — algoritma cepat namun salah tidak berguna. Namun efisiensi kritis untuk data berskala besar. Standar profesional: pastikan benar dulu, lalu optimalkan.
 
 ---
 
-## 🗂️ Ringkasan Per Pertemuan
+## PERTEMUAN 5 — Implementasi Linear Search dan Binary Search
+
+### Tabel Perbandingan Langkah (Wajib)
+
+| n      | Linear Search (worst) | Binary Search (worst) | Binary lebih cepat |
+|--------|:---------------------:|:---------------------:|:-----------------:|
+| 10     | 10                    | 4                     | ~2.5×             |
+| 100    | 100                   | 7                     | ~14×              |
+| 1.000  | 1.000                 | 10                    | ~100×             |
+| 10.000 | 10.000                | 14                    | ~714×             |
+
+### Kesimpulan (5–7 Kalimat)
+
+Linear Search menelusuri setiap elemen dari awal hingga akhir tanpa memerlukan data terurut, menjadikannya fleksibel namun tidak efisien untuk dataset besar dengan kompleksitas O(n). Binary Search membagi ruang pencarian menjadi dua setiap iterasi sehingga hanya memerlukan sekitar log₂(n) langkah — untuk satu juta data hanya ~20 langkah. Syarat mutlak Binary Search adalah data harus terurut; pelanggaran syarat ini menghasilkan jawaban yang salah atau tidak konsisten karena asumsi pembagian ruang pencarian tidak berlaku. Pengujian pada data [4,8,15,16,23,42] menunjukkan Linear Search memerlukan 6 langkah untuk worst case sedangkan Binary Search hanya 3 langkah pada dataset yang sama. Untuk pencarian berulang pada dataset besar yang sudah terurut, Binary Search adalah pilihan yang jauh lebih unggul. Namun jika data belum terurut, biaya pengurutan O(n log n) harus dipertimbangkan sebelum memutuskan menggunakan Binary Search. Linear Search lebih tepat untuk data kecil, data tidak terurut, atau pencarian yang hanya dilakukan satu kali.
+
+### Refleksi Pertemuan 5
+
+**Challenge — Binary Search pada data tidak terurut:**
+
+Binary Search gagal pada data acak karena ia membuang setengah ruang pencarian berdasarkan perbandingan data[mid] dengan target, dengan asumsi bahwa semua elemen di satu sisi lebih besar dan sisi lain lebih kecil. Pada data acak, asumsi ini tidak berlaku — target yang sebenarnya ada bisa berada di bagian yang sudah dibuang. Hasilnya: Binary Search mengembalikan "tidak ditemukan" meskipun target ada, atau mengembalikan indeks yang salah.
 
 ---
 
-### Pertemuan 1 — Implementasi Algoritma Berbasis IPO
+## PERTEMUAN 6 — Implementasi Sorting Dasar
 
-**Topik:** Kerangka IPO (Input–Process–Output), Pseudocode → Python
+### Tabel Perbandingan Jumlah Perbandingan (Wajib)
 
-| File | Topik | Konsep |
-|------|-------|--------|
-| `p1_diskon.py` | Kalkulator diskon belanja | `if-elif-else`, validasi input |
-| `p1_nilai_mahasiswa.py` | Nilai akhir berbobot | Rumus berbobot, validasi range |
-| `p1_konversi_suhu.py` | Konversi °C → °F dan Kelvin | Rumus matematika, tabel output |
+| Jumlah Data | Bubble Sort | Selection Sort | Insertion Sort |
+|:-----------:|:-----------:|:--------------:|:--------------:|
+| 6           | ~9          | 15             | ~7             |
+| 10          | ~39         | 45             | ~24            |
+| 20          | ~190        | 190            | ~107           |
 
-**Aturan Diskon:**
-- Belanja ≥ Rp500.000 → Diskon 20%
-- Belanja ≥ Rp250.000 → Diskon 10%
-- Lainnya → Diskon 0%
+### Perbandingan Berdasarkan Jenis Data (n=10)
 
-**Refleksi:**
-> *Mengapa urutan kondisi `if-elif` penting?*  
-> Python mengevaluasi dari atas ke bawah dan berhenti pada kondisi pertama yang `True`. Kondisi paling spesifik (nilai terbesar) harus ditulis lebih dahulu agar tidak terjadi kesalahan klasifikasi.
+| Jenis Data            | Bubble | Selection | Insertion |
+|-----------------------|:------:|:---------:|:---------:|
+| Data Acak             | ~39    | 45        | ~24       |
+| Data Terurut (best)   | 9      | 45        | **9**     |
+| Data Terbalik (worst) | 45     | 45        | 45        |
+| Hampir Terurut        | ~39    | 45        | **~15**   |
 
----
+### Kesimpulan (5–7 Kalimat)
 
-### Pertemuan 2 — Modular Programming
+Ketiga algoritma memiliki kompleksitas worst case O(n²) namun menunjukkan perilaku berbeda tergantung kondisi data. Bubble Sort membandingkan dan menukar pasangan bersebelahan secara berulang; mudah dipahami tetapi relatif lambat karena banyak operasi swap. Selection Sort selalu melakukan n*(n-1)/2 perbandingan tanpa peduli kondisi data — konsisten tetapi tidak adaptif; keunggulannya adalah meminimalkan jumlah swap (≤ n-1). Insertion Sort adalah pilihan terbaik untuk data hampir terurut karena bersifat adaptif: elemen yang sudah di posisi tepat tidak disentuh sehingga kompleksitasnya mendekati O(n). Untuk data acak, ketiga algoritma setara dalam orde O(n²) meskipun koefisiennya berbeda. Dalam praktik produksi, Python menggunakan TimSort yang menggabungkan Insertion Sort dan Merge Sort menghasilkan O(n log n). Pemilihan algoritma harus mempertimbangkan ukuran data, kondisi awal data, dan batasan memori yang tersedia.
 
-**Topik:** Dekomposisi, Single Responsibility, Return Value
+### Refleksi Pertemuan 6
 
-| File | Fungsi-fungsi |
-|------|--------------|
-| `p2_nilai_modular.py` | `input_nilai()`, `validasi_nilai()`, `hitung_nilai()`, `tentukan_grade()`, `tampilkan_hasil()` |
-| `p2_bangun_datar.py` | `luas_persegi()`, `luas_persegi_panjang()`, `luas_lingkaran()`, + keliling masing-masing |
+**1. Mana paling sedikit perbandingan untuk data acak?**
+Insertion Sort secara rata-rata melakukan lebih sedikit perbandingan dari Bubble Sort pada data acak karena proses sisipan berhenti begitu posisi tepat ditemukan, tidak harus menyelesaikan seluruh sub-array.
 
-**4 Prinsip Emas Modular:**
-1. **Single Responsibility** — Satu fungsi, satu tugas
-2. **Reusability** — Fungsi dapat dipanggil berulang kali
-3. **Readability** — Kode mudah dibaca manusia
-4. **Maintainability** — Mudah diubah tanpa merusak bagian lain
+**2. Mana paling stabil pada data hampir terurut?**
+Insertion Sort — karena hanya elemen yang salah posisi yang dipindahkan. Pada data hampir terurut, hanya sedikit shift yang diperlukan sehingga mendekati O(n).
 
-**Refleksi:**
-> *Apa keuntungan modular vs monolitik?*  
-> Kode modular lebih terstruktur, mudah di-debug per fungsi, dapat dipakai ulang, dan penambahan fitur baru tidak berisiko merusak bagian yang sudah berjalan.
+**Challenge — Insertion Sort (n=20):**
 
----
-
-### Pertemuan 3 — Rekursi vs Iterasi
-
-**Topik:** Base Case, Recursive Case, Call Stack, Fibonacci
-
-| Fungsi | Rekursif | Iteratif | Kompleksitas |
-|--------|----------|----------|--------------|
-| Faktorial(n) | ✓ | ✓ | O(n) rekursi linear |
-| Jumlah 1..n | ✓ | ✓ | O(n) |
-| Fibonacci(n) | ✓ | ✓ | O(2ⁿ) rekursi / O(n) iterasi |
-| Pangkat a^n | ✓ | — | O(n) |
-
-**Anatomi Rekursi:**
-```
-Fungsi rekursif(n):
-    Jika kondisi_berhenti:   ← Base Case (WAJIB ADA)
-        kembalikan nilai_pasti
-    Else:
-        kembalikan rekursif(n-1)  ← Recursive Case
-```
-
-**Trace faktorial(4):**
-```
-→ faktorial(4) → faktorial(3) → faktorial(2) → faktorial(1) → faktorial(0)=1
-← 1×1=1 ← 2×1=2 ← 3×2=6 ← 4×6=24
-```
-
-**Refleksi:**
-> *Mengapa Fibonacci rekursif lebih lambat?*  
-> Fibonacci rekursif melahirkan **dua** percabangan setiap langkah (rekursi bercabang). Sub-masalah yang sama dihitung berulang kali (overlapping subproblems), menghasilkan kompleksitas O(2ⁿ).
+| Kondisi Data      | Perbandingan | Shift |
+|-------------------|:------------:|:-----:|
+| Terurut (best)    | 19           | **0** |
+| Hampir Terurut    | ~44          | ~25   |
+| Data Acak (avg)   | ~83          | ~66   |
+| Terbalik (worst)  | 190          | 190   |
 
 ---
 
-### Pertemuan 4 — Analisis Kompleksitas Algoritma (Big-O Intuitif)
+## PERTEMUAN 7 — Integrasi Searching, Sorting, dan Modular Programming
 
-**Topik:** O(1), O(n), O(n²), Aturan Big-O, Menghitung Iterasi
+### Analisis Kompleksitas (≥5 Kalimat)
 
-| Latihan | Pola Kode | Kompleksitas | Iterasi (n=10) |
-|---------|-----------|--------------|----------------|
-| 1 | Satu loop | O(n) | 10 |
-| 2 | Dua loop berurutan | O(n) | 20 → tetap O(n) |
-| 3 | Loop bersarang | O(n²) | 100 |
-| 4 | Linear Search | O(n) worst | ≤ n langkah |
+Sistem Pengolahan Nilai Mahasiswa mengintegrasikan seluruh konsep dari pertemuan 1 hingga 6 dalam satu pipeline algoritma yang utuh. Kompleksitas total sistem ditentukan oleh komponen dengan kompleksitas tertinggi, yaitu fungsi sorting (Bubble Sort atau Insertion Sort) yang beroperasi pada O(n²) — sehingga kompleksitas keseluruhan sistem adalah O(n²). Fungsi-fungsi lain seperti input_data(), hitung_nilai(), linear_search(), dan tampilkan_data() bersifat linear O(n) dan diabaikan dalam analisis asimtotik karena O(n²) + O(n) = O(n²). Setelah data diurutkan oleh sorting, Binary Search dapat dimanfaatkan untuk pencarian nilai dengan hanya O(log n) langkah — strategi terbaik adalah melakukan sorting satu kali di awal kemudian menggunakan Binary Search untuk semua pencarian berikutnya. Untuk sistem nyata dengan ribuan mahasiswa, sorting O(n²) harus diganti dengan algoritma O(n log n) seperti Merge Sort atau TimSort agar performa tetap dapat diterima. Penggunaan modular programming memastikan setiap komponen dapat diuji, dioptimalkan, dan diganti secara independen tanpa mengganggu keseluruhan sistem.
 
-**Tabel Perbandingan Iterasi:**
+### Tabel Kompleksitas Seluruh Fungsi
 
-| n | O(1) | O(n) ×1 | O(n) ×2 | O(n²) | Rasio n²/n |
-|---|------|---------|---------|-------|------------|
-| 5 | 1 | 5 | 10 | 25 | 5× |
-| 10 | 1 | 10 | 20 | 100 | 10× |
-| 20 | 1 | 20 | 40 | 400 | 20× |
+| Fungsi                    | Kompleksitas | Keterangan                         |
+|---------------------------|:------------:|------------------------------------|
+| `input_data_mahasiswa()`  | O(n)         | Loop input n mahasiswa             |
+| `hitung_nilai()`          | O(n)         | Loop kalkulasi n mahasiswa         |
+| `bubble_sort_desc()`      | O(n²)        | Loop bersarang, worst case         |
+| `insertion_sort_desc()`   | O(n²)        | Loop + while, worst case           |
+| `linear_search()`         | O(n)         | Telusuri satu per satu by nama     |
+| `binary_search_nilai()`   | O(log n)     | Bagi dua ruang pencarian           |
+| `tampilkan_data()`        | O(n)         | Cetak n baris output               |
+| `tampilkan_statistik()`   | O(n)         | Scan nilai min/max/rata-rata       |
+| **TOTAL DOMINAN**         | **O(n²)**    | Didominasi oleh komponen sorting   |
 
-**Aturan Big-O:**
-- Konstanta diabaikan: `2n → O(n)`, `5n² → O(n²)`
-- Loop berurutan: `O(n) + O(n) = O(n)` *(bukan O(2n))*
-- Loop bersarang: `O(n) × O(n) = O(n²)`
-- Ambil suku terbesar: `O(n² + n) → O(n²)`
+### Challenge — Bubble Sort vs Insertion Sort (n=8)
 
-**Refleksi:**
-> *Mengapa O(n²) jauh lebih lambat saat n besar?*  
-> Saat n=1000, O(n) butuh 1.000 operasi sedangkan O(n²) butuh **1.000.000** operasi — 1000× lebih banyak. Saat n=10.000, perbedaannya menjadi 10.000×. Pertumbuhan kuadratik menjadi tidak praktis dengan cepat.
+| Metrik              | Bubble Sort | Insertion Sort | Pemenang             |
+|---------------------|:-----------:|:--------------:|----------------------|
+| Perbandingan        | 28          | **19**         | Insertion Sort       |
+| Swap / Shift        | 14          | 14             | Seri                 |
 
-> *Mengapa konstanta tidak diperhitungkan dalam Big-O?*  
-> Big-O mengukur **pola pertumbuhan**, bukan nilai absolut. Untuk n yang sangat besar, konstanta 2 atau 5 menjadi tidak signifikan dibanding faktor pertumbuhan (n vs n²).
+**Algoritma mana yang lebih efisien untuk data kecil?**
 
----
+Insertion Sort lebih efisien untuk data kecil (n < 20) karena tiga alasan: pertama, Insertion Sort berhenti lebih awal per elemen begitu posisi sisipan ditemukan, sementara Bubble Sort harus menyelesaikan seluruh pass meskipun sudah optimal. Kedua, jumlah perbandingan Insertion Sort sama dengan jumlah inversions dalam data — semakin sedikit inversions (data hampir terurut), semakin cepat. Ketiga, Bubble Sort melakukan swap berulang untuk memindahkan satu elemen ke posisi akhirnya, sedangkan Insertion Sort melakukannya dengan satu operasi sisipan. Secara asimtotik keduanya O(n²), namun untuk data kecil konstanta dan koefisien Insertion Sort lebih kecil sehingga unggul secara praktis.
 
-### Pertemuan 5 — Linear Search dan Binary Search
+### Refleksi Pertemuan 7
 
-**Topik:** O(n) vs O(log n), syarat Binary Search, perbandingan langkah
+**Strategi Eksekusi UTS (dari Blueprint Pertemuan 7):**
+1. Baca Cermat — Pahami spesifikasi dan batasan masalah
+2. Identifikasi Tipe — Apakah rekursi, searching, atau sorting?
+3. Pilih Algoritma — Sesuaikan dengan kondisi data
+4. Analisis Kompleksitas — Hitung efisiensi Big-O
+5. Implementasi Modular — Tulis kode terstruktur dan terpecah
 
-| Algoritma | Kompleksitas | Syarat Data | Cocok Untuk |
-|-----------|--------------|-------------|-------------|
-| Linear Search | O(n) | Bebas (tidak perlu terurut) | Data kecil, data tidak terurut |
-| Binary Search | O(log n) | **WAJIB terurut** | Data besar yang terurut |
-
-**Tabel Perbandingan Langkah (Worst Case):**
-
-| n | Linear Search | Binary Search | log₂(n) | Binary lebih cepat |
-|---|---------------|---------------|---------|-------------------|
-| 10 | 10 | 3 | 4 | ~3× |
-| 100 | 100 | 6 | 7 | ~17× |
-| 1.000 | 1.000 | 9 | 10 | ~111× |
-| 10.000 | 10.000 | 13 | 14 | ~769× |
-
-**Mekanisme Binary Search:**
-```
-low=0, high=n-1
-Selama low <= high:
-    mid = (low+high)//2
-    Jika data[mid] == target → DITEMUKAN
-    Jika data[mid] < target  → low = mid+1   (cari kanan)
-    Jika data[mid] > target  → high = mid-1  (cari kiri)
-```
-
-**Challenge — Binary Search data tidak terurut:**  
-Binary Search pada data acak menghasilkan hasil yang **tidak dapat dipercaya**. Ia membuang setengah ruang pencarian berdasarkan asumsi keterurutan yang tidak terpenuhi, sehingga target yang ada bisa dianggap tidak ada.
-
-**Refleksi:**
-> *Kapan Linear Search lebih tepat dari Binary Search?*  
-> Saat data tidak terurut, saat biaya pengurutan lebih mahal dari pencarian, atau saat data sangat kecil (n < 10) di mana overhead Binary Search tidak sepadan.
-
----
-
-### Pertemuan 6 — Sorting Dasar (Bubble, Selection, Insertion)
-
-**Topik:** Tiga algoritma sorting O(n²), perbandingan operasi, best/worst case
-
-**Implementasi Data Demo `[5, 2, 9, 1, 5, 6]`:**
-
-| Algoritma | Hasil | Perbandingan | Swap/Shift |
-|-----------|-------|--------------|------------|
-| Bubble Sort | [1,2,5,5,6,9] | 14 | 6 swap |
-| Selection Sort | [1,2,5,5,6,9] | 15 | 4 swap |
-| Insertion Sort | [1,2,5,5,6,9] | 9 | 6 shift |
-
-**Tabel Perbandingan (Data Acak):**
-
-| n | Bubble (comp) | Selection (comp) | Insertion (comp) |
-|---|---------------|------------------|------------------|
-| 6 | ~9 | 15 | ~7 |
-| 10 | ~45 | 45 | ~35 |
-| 20 | ~190 | 190 | ~107 |
-
-**Perbandingan Berdasarkan Jenis Data (n=10):**
-
-| Jenis Data | Bubble | Selection | Insertion |
-|------------|--------|-----------|-----------|
-| Data Acak | ~39 | 45 | ~24 |
-| Data Terurut (best) | 9 | 45 | **9** |
-| Data Terbalik (worst) | 45 | 45 | 45 |
-| Hampir Terurut | ~45 | 45 | **~24** |
-
-**Kompleksitas:**
-
-| Algoritma | Best Case | Worst Case | Space | Keunggulan |
-|-----------|-----------|------------|-------|------------|
-| Bubble Sort | O(n) | O(n²) | O(1) | Mudah dipahami |
-| Selection Sort | O(n²) | O(n²) | O(1) | Jumlah swap minimum |
-| Insertion Sort | **O(n)** | O(n²) | O(1) | Terbaik untuk data hampir terurut |
-
-**Challenge — Insertion Sort:**
-- Data terurut: 19 perbandingan, **0 shift** → O(n)
-- Hampir terurut: ~44 perbandingan, ~25 shift → mendekati O(n)
-- Data acak: ~83 perbandingan, ~66 shift → O(n²)
-- Data terbalik: 190 perbandingan, 190 shift → worst case O(n²)
-
-**Refleksi:**
-> *Mana yang paling stabil pada data hampir terurut?*  
-> **Insertion Sort** — karena hanya menggeser elemen yang memang salah posisi. Elemen yang sudah berada di tempat yang tepat tidak tersentuh sama sekali.
-
-> *Panduan memilih algoritma sorting:*
-> - **Bubble Sort** → edukasi / data sangat kecil
-> - **Selection Sort** → minimize operasi write/swap (storage khusus)
-> - **Insertion Sort** → data hampir terurut, data streaming/real-time
-> - **Python `sorted()`** → production code (TimSort: O(n log n))
-
----
-
-## 🔗 Peta Konsep Keseluruhan
-
-```
-Pertemuan 1: Analisis Masalah & IPO
-    ↓
-Pertemuan 2: Modular Programming (Dekomposisi Fungsi)
-    ↓
-Pertemuan 3: Rekursi vs Iterasi (Call Stack, Base Case)
-    ↓
-Pertemuan 4: Analisis Kompleksitas Big-O (O(1), O(n), O(n²))
-    ↓
-Pertemuan 5: Algoritma Pencarian (O(n) vs O(log n))
-    ↓
-Pertemuan 6: Algoritma Pengurutan (Bubble, Selection, Insertion)
-```
-
-## 📊 Hierarki Kompleksitas Algoritma
-
-```
-O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2ⁿ)
-Terbaik                                          Terburuk
-```
-
-| Notasi | Nama | Contoh |
-|--------|------|--------|
-| O(1) | Konstan | Akses array by index |
-| O(log n) | Logaritmik | Binary Search |
-| O(n) | Linear | Linear Search, loop tunggal |
-| O(n²) | Kuadratik | Bubble/Selection/Insertion Sort |
-| O(2ⁿ) | Eksponensial | Fibonacci rekursif naif |
-
----
-
-## ▶️ Cara Menjalankan
-
-```bash
-# Pertemuan 1
-python3 Pertemuan1/p1_diskon.py
-python3 Pertemuan1/p1_nilai_mahasiswa.py
-python3 Pertemuan1/p1_konversi_suhu.py
-
-# Pertemuan 2
-python3 Pertemuan2/p2_nilai_modular.py
-python3 Pertemuan2/p2_bangun_datar.py
-
-# Pertemuan 3
-python3 Pertemuan3/p3_rekursi_iterasi.py
-
-# Pertemuan 4
-python3 Pertemuan4/p4_big_o_analysis.py
-
-# Pertemuan 5
-python3 Pertemuan5/p5_searching.py
-
-# Pertemuan 6
-python3 Pertemuan6/p6_sorting.py
-```
-
----
-
-*"Good code is the documentation of good thought." — Algoritma & Pemrograman 2, STTPA*
+**Pelajaran kunci dari integrasi:**
+Sebuah sistem yang baik bukan hanya sistem yang benar, tetapi sistem yang dirancang dengan arsitektur jelas, setiap komponen terisolasi dan dapat diuji secara mandiri, serta pilihan algoritma didasarkan pada analisis kompleksitas yang tepat — bukan sekadar "yang pertama terpikirkan".

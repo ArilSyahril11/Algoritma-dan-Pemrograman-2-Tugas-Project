@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Algorithm Integration Blueprint</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#07111f;
+    color:white;
+    line-height:1.6;
+}
+
+.container{
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+    padding:40px 0;
+}
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(135deg,#03142d,#082447,#0c3261);
+    border-radius:30px;
+    padding:50px;
+    margin-bottom:30px;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+.hero::before{
+    content:'';
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,#00d0ff33,transparent);
+    top:-250px;
+    right:-100px;
+}
+
+.hero h1{
+    font-size:4rem;
+    font-weight:800;
+    line-height:1;
+    margin-bottom:10px;
+}
+
+.hero h1 span{
+    color:#29d6ff;
+}
+
+.hero h2{
+    color:#58e1ff;
+    font-size:1.8rem;
+    margin-bottom:25px;
+    font-weight:600;
+}
+
+.hero p{
+    max-width:850px;
+    color:#d9e7ff;
+    font-size:1.1rem;
+}
+
+/* GRID */
+
+.grid-4{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.card{
+    background:#f7fbff;
+    color:#0a1d38;
+    border-radius:22px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:#003b8e;
+    font-size:1.3rem;
+}
+
+.card ul{
+    padding-left:20px;
+}
+
+.card li{
+    margin-bottom:8px;
+}
+
+/* SECTION */
+
+.section{
+    background:#ffffff;
+    color:#082447;
+    border-radius:28px;
+    padding:35px;
+    margin-bottom:30px;
+    box-shadow:0 12px 35px rgba(0,0,0,.18);
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.number{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#005eff;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:1.3rem;
+}
+
+.section h2{
+    font-size:2rem;
+    color:#003a8c;
+}
+
+/* STEPS */
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+}
+
+.step-box{
+    background:#f4f8ff;
+    border:2px solid #dce9ff;
+    border-radius:20px;
+    padding:25px;
+    transition:.3s;
+}
+
+.step-box:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 25px rgba(0,94,255,.15);
+}
+
+.step-box h4{
+    margin:15px 0;
+    color:#0048b4;
+}
+
+/* TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+table th{
+    background:#005eff;
+    color:white;
+    padding:15px;
+    text-align:left;
+}
+
+table td{
+    padding:15px;
+    border-bottom:1px solid #d9e7ff;
+}
+
+table tr:nth-child(even){
+    background:#f5f9ff;
+}
+
+/* CASE FLOW */
+
+.flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+    margin-top:20px;
+}
+
+.flow-item{
+    flex:1;
+    min-width:180px;
+    background:#f5f9ff;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    border:2px solid #d9e7ff;
+}
+
+.flow-item h4{
+    margin-top:15px;
+    color:#0048b4;
+}
+
+/* BEST PRACTICES */
+
+.practice-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.practice{
+    background:#f5f9ff;
+    padding:25px;
+    border-radius:20px;
+    border-left:6px solid #00a6ff;
+}
+
+.practice h4{
+    color:#003f99;
+    margin-bottom:10px;
+}
+
+/* TOOLS */
+
+.tools{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+    margin-top:30px;
+}
+
+.tool{
+    background:#f5f9ff;
+    color:#082447;
+    padding:20px 30px;
+    border-radius:16px;
+    font-weight:600;
+    border:2px solid #dce9ff;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    color:#9fc0ff;
+    margin-top:40px;
+    padding-bottom:40px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.hero{
+    padding:35px;
+}
+
+.hero h1{
+    font-size:2.4rem;
+}
+
+.hero h2{
+    font-size:1.2rem;
+}
+
+.section h2{
+    font-size:1.4rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HERO -->
+
+    <section class="hero">
+        <h1>ALGORITHM <span>INTEGRATION</span> BLUEPRINT</h1>
+        <h2>Kerangka Integrasi Algoritma untuk Solusi Terpadu</h2>
+
+        <p>
+            Blueprint ini memandu proses penggabungan beberapa algoritma
+            dan struktur data menjadi sistem yang efisien, scalable,
+            modular, dan mudah dikembangkan.
+        </p>
+    </section>
+
+    <!-- TOP CARDS -->
+
+    <div class="grid-4">
+
+        <div class="card">
+            <h3>🎯 Tujuan</h3>
+            <ul>
+                <li>Membangun sistem terintegrasi</li>
+                <li>Memadukan algoritma secara optimal</li>
+                <li>Meningkatkan efisiensi program</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>💡 Manfaat</h3>
+            <ul>
+                <li>Performa lebih baik</li>
+                <li>Kode reusable</li>
+                <li>Skalabilitas meningkat</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>👨‍💻 Siapa yang Perlu?</h3>
+            <ul>
+                <li>Mahasiswa</li>
+                <li>Developer</li>
+                <li>System Analyst</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>📋 Prasyarat</h3>
+            <ul>
+                <li>Dasar Algoritma</li>
+                <li>Struktur Data</li>
+                <li>Problem Solving</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- SECTION 1 -->
+
+    <section class="section">
+
+        <div class="section-title">
+            <div class="number">1</div>
+            <h2>Tahapan Integrasi Algoritma</h2>
+        </div>
+
+        <div class="steps">
+
+            <div class="step-box">
+                <h4>🔍 Analisis Masalah</h4>
+                <p>Identifikasi kebutuhan input, output, dan tujuan sistem.</p>
+            </div>
+
+            <div class="step-box">
+                <h4>🧩 Dekomposisi</h4>
+                <p>Pecah masalah besar menjadi sub-masalah kecil.</p>
+            </div>
+
+            <div class="step-box">
+                <h4>⚙️ Pemilihan Algoritma</h4>
+                <p>Pilih algoritma terbaik untuk setiap kebutuhan.</p>
+            </div>
+
+            <div class="step-box">
+                <h4>🏗️ Desain Integrasi</h4>
+                <p>Rancang hubungan antar modul dan alur data.</p>
+            </div>
+
+            <div class="step-box">
+                <h4>💻 Implementasi</h4>
+                <p>Gabungkan seluruh komponen menjadi sistem.</p>
+            </div>
+
+            <div class="step-box">
+                <h4>📊 Evaluasi</h4>
+                <p>Lakukan pengujian dan optimasi performa.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SECTION 2 -->
+
+    <section class="section">
+
+        <div class="section-title">
+            <div class="number">2</div>
+            <h2>Pilihan Algoritma & Struktur Data</h2>
+        </div>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Tujuan</th>
+                        <th>Algoritma</th>
+                        <th>Contoh</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Searching</td>
+                        <td>Mencari data cepat</td>
+                        <td>Linear Search, Binary Search</td>
+                        <td>Pencarian nilai mahasiswa</td>
+                    </tr>
+
+                    <tr>
+                        <td>Sorting</td>
+                        <td>Mengurutkan data</td>
+                        <td>Bubble Sort, Merge Sort</td>
+                        <td>Ranking mahasiswa</td>
+                    </tr>
+
+                    <tr>
+                        <td>Graph</td>
+                        <td>Rute & relasi</td>
+                        <td>BFS, DFS, Dijkstra</td>
+                        <td>Jejaring sosial</td>
+                    </tr>
+
+                    <tr>
+                        <td>Optimasi</td>
+                        <td>Solusi optimal</td>
+                        <td>Greedy, Dynamic Programming</td>
+                        <td>Penjadwalan</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- SECTION 3 -->
+
+    <section class="section">
+
+        <div class="section-title">
+            <div class="number">3</div>
+            <h2>Contoh Studi Kasus</h2>
+        </div>
+
+        <div class="flow">
+
+            <div class="flow-item">
+                <h4>📥 Input Data</h4>
+                <p>Data mahasiswa dimasukkan ke sistem.</p>
+            </div>
+
+            <div class="flow-item">
+                <h4>🧮 Hitung Nilai</h4>
+                <p>Sistem menghitung nilai akhir otomatis.</p>
+            </div>
+
+            <div class="flow-item">
+                <h4>📈 Sorting</h4>
+                <p>Bubble Sort mengurutkan nilai tertinggi.</p>
+            </div>
+
+            <div class="flow-item">
+                <h4>🔎 Searching</h4>
+                <p>Linear Search mencari nilai tertentu.</p>
+            </div>
+
+            <div class="flow-item">
+                <h4>📋 Output</h4>
+                <p>Hasil ditampilkan secara terstruktur.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SECTION 4 -->
+
+    <section class="section">
+
+        <div class="section-title">
+            <div class="number">4</div>
+            <h2>Analisis Kompleksitas</h2>
+        </div>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Algoritma</th>
+                        <th>Kompleksitas</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Linear Search</td>
+                        <td>O(n)</td>
+                        <td>Mencari data satu per satu</td>
+                    </tr>
+
+                    <tr>
+                        <td>Binary Search</td>
+                        <td>O(log n)</td>
+                        <td>Data harus terurut</td>
+                    </tr>
+
+                    <tr>
+                        <td>Bubble Sort</td>
+                        <td>O(n²)</td>
+                        <td>Cocok untuk data kecil</td>
+                    </tr>
+
+                    <tr>
+                        <td>Merge Sort</td>
+                        <td>O(n log n)</td>
+                        <td>Lebih efisien untuk data besar</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- SECTION 5 -->
+
+    <section class="section">
+
+        <div class="section-title">
+            <div class="number">5</div>
+            <h2>Best Practices</h2>
+        </div>
+
+        <div class="practice-grid">
+
+            <div class="practice">
+                <h4>📐 Rancang Sebelum Coding</h4>
+                <p>Buat diagram alur dan modularisasi sistem sebelum implementasi.</p>
+            </div>
+
+            <div class="practice">
+                <h4>🧪 Uji Secara Menyeluruh</h4>
+                <p>Gunakan unit test dan stress testing.</p>
+            </div>
+
+            <div class="practice">
+                <h4>📊 Monitoring</h4>
+                <p>Analisis bottleneck performa sistem.</p>
+            </div>
+
+            <div class="practice">
+                <h4>🔁 Iterasi & Optimasi</h4>
+                <p>Terus evaluasi dan tingkatkan efisiensi program.</p>
+            </div>
+
+        </div>
+
+        <div class="tools">
+
+            <div class="tool">Python</div>
+            <div class="tool">C++</div>
+            <div class="tool">Java</div>
+            <div class="tool">SQL</div>
+            <div class="tool">Git</div>
+            <div class="tool">Docker</div>
+
+        </div>
+
+    </section>
+
+    <div class="footer">
+        © 2026 — Modern Algorithm Integration Infographic
+    </div>
+
+</div>
+
+</body>
+</html>
